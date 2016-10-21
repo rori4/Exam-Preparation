@@ -25,14 +25,12 @@ namespace RageQuit
                 {
                     output.Append(match.Groups[1]);
                 }
-
             }
 
             count = output.ToString().Distinct().Count();
 
             Console.WriteLine($"Unique symbols used: {count}");
             Console.WriteLine($"{output}");
-
         }
     }
 }
