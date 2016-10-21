@@ -5,7 +5,7 @@ namespace Coffee_Orders
 {
     class CoffeeOrdersProgram
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int num = int.Parse(Console.ReadLine());
             decimal sum = 0;
