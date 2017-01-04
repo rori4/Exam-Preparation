@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace Pishtov
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Websites to check regex - http://regexr.com/ and https://regex101.com/ You can CTRL + click
+
+            string pattern = @"\b[A-Z][a-z]+ [A-Z][a-z]+\b"; // Finds names and surnames in format Ivan Ivanov, Peter Bratanov, Bla Bla but not Rangel stoilov or nikola Stoilov
+            string username = @"^\w{6,12}$"; // Usernames or text between 6 and 12 chars
+            string date = @"\d{2}(-|\/)\d{2}\1\d{4}"; // Gets a date with the format 22-12-2015 or 22/12/2015
+            string email = @"([\w+\.\-]+)@([\w\-]+)((\.(\w){2,4})+)"; //Gets valid emails with a domain of 2 to 4 chars
+
+
+
+            //////////////////////////////////////
+            /// REPLACE AHREF to forum URL tags //
+            //////////////////////////////////////
+
+            string text = Console.ReadLine();
+
+            string href = @"<a.*?href.*?=(.*)>(.*?)<\/a>";
+            string replace = @"[URL href=$1]$2[/URL]";
+            string replaced = Regex.Replace(text, href,
+                                                       replace);
+            Console.WriteLine(replaced);
+
+            ///////////////////////////////////////
+
+            string input = @"Finds names and surnames in format Ivan Ivanov, Peter Bratanov, Bla Bla but not Rangel stoilov or nikola Stoilov";
+
+            foreach (Match m in Regex.Matches(input, pattern))
+            {
+                Console.WriteLine("'{0}' found at index {1}.", m.Value, m.Index);
+            }
+
+
+        }
+    }
+}
